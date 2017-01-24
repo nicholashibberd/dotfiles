@@ -14,6 +14,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-commentary'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'mtscout6/vim-cjsx'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
