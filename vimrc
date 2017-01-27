@@ -64,4 +64,6 @@ let g:solarized_visibility="high"
 let g:solarized_termtrans=1
 
 " Disable swap files
-:set noswapfile
+set noswapfile
+
+set colorcolumn=80
