@@ -72,3 +72,8 @@ set colorcolumn=80
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+
+
+set nowrap              " Don't wrap the display of long lines
+set splitright          " Split new vertical windows right of current window
+set splitbelow          " Split new horizontal windows under current window
