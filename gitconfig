@@ -1,0 +1,22 @@
+[core]
+	excludesfile = ~/.gitignore_global
+  editor = vim
+[push]
+	default = current
+[user]
+	name = “nicholashibberd”
+	email = “nicholashibberd@gmail.com”
+[color]
+	ui = true
+[alias]
+	co = checkout
+	cob = checkout -b
+	ci = commit
+	cia = commit --amend
+  cp = cherry-pick
+	st = status
+	br = branch
+	d = diff
+	ds = diff --staged
+  dm = "!git branch --merged | grep -v '^* master$' | grep -v '^  master$' | xargs git branch -d"
+  su = "!f() { git branch --set-upstream $1 origin/$1; }; f"
