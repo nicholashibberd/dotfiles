@@ -15,6 +15,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-commentary'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'mtscout6/vim-cjsx'
+Plugin 'lambdatoast/elm.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
