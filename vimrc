@@ -54,6 +54,11 @@ set number
 " Highlight ruby operators (`/`, `&&`, `*`...)
 let g:ruby_operators = 1
 
+" Highlight trailing whitespace in red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
 set t_Co=256
 set background=dark
 colorscheme solarized
