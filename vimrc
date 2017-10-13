@@ -83,3 +83,12 @@ set showmode
 set nowrap              " Don't wrap the display of long lines
 set splitright          " Split new vertical windows right of current window
 set splitbelow          " Split new horizontal windows under current window
+
+" Run go import on save
+let g:go_fmt_command = "goimports"
+
+" Run elm format on save
+au bufwritepre *.elm :ElmFormat
+
+" Set elm tabs to 4 spaces
+au FileType elm setlocal ts=4 sts=4 sw=4 expandtab
