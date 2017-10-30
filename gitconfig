@@ -18,5 +18,6 @@
 	br = branch
 	d = diff
 	ds = diff --staged
+	cm = checkout master
   dm = "!git branch --merged | grep -v '^* master$' | grep -v '^  master$' | xargs git branch -d"
   su = "!f() { git branch --set-upstream $1 origin/$1; }; f"
