@@ -4,20 +4,21 @@
 [push]
 	default = current
 [user]
-	name = “nicholashibberd”
-	email = “nicholashibberd@gmail.com”
+	name = nicholashibberd
+	email = nicholashibberd@gmail.com
 [color]
 	ui = true
 [alias]
-	co = checkout
-	cob = checkout -b
+	br = branch
 	ci = commit
 	cia = commit --amend -C HEAD
-  cp = cherry-pick
-	st = status
-	br = branch
-	d = diff
-	ds = diff --staged
+	co = checkout
+	cob = checkout -b
 	cm = checkout master
+  cp = cherry-pick
+	d = diff
   dm = "!git branch --merged | grep -v '^* master$' | grep -v '^  master$' | xargs git branch -d"
+	ds = diff --staged
+  p = pull
+	st = status
   su = "!f() { git branch --set-upstream $1 origin/$1; }; f"
