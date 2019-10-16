@@ -15,7 +15,9 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-commentary'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'mtscout6/vim-cjsx'
-Plugin 'lambdatoast/elm.vim'
+Plugin 'elmcast/elm-vim'
+Plugin 'elixir-editors/vim-elixir'
+Plugin 'dense-analysis/ale'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -29,6 +31,9 @@ call vundle#end()            " required
 " "filetype plugin on
 "
 " " Put your non-Plugin stuff after this line
+
+" set the path to the directory that vim was opened from, to allow use of :find
+set path=$PWD/**
 
 nmap , \
 vmap , \
@@ -88,7 +93,15 @@ set splitbelow          " Split new horizontal windows under current window
 let g:go_fmt_command = "goimports"
 
 " Run elm format on save
-au bufwritepre *.elm :ElmFormat
+let g:elm_format_autosave = 1
 
 " Set elm tabs to 4 spaces
 au FileType elm setlocal ts=4 sts=4 sw=4 expandtab
+
+"ALE linting
+let g:ale_fixers = {
+\  'ruby': [
+\    'rubocop'
+\  ]
+\}
+let g:ale_lint_on_insert_leave = 1
