@@ -18,6 +18,7 @@ Plugin 'mtscout6/vim-cjsx'
 Plugin 'elmcast/elm-vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'dense-analysis/ale'
+Plugin 'mhinz/vim-mix-format'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -95,6 +96,9 @@ let g:go_fmt_command = "goimports"
 " Run elm format on save
 let g:elm_format_autosave = 1
 
+" Run mix format on save
+let g:mix_format_on_save = 1
+
 " Set elm tabs to 4 spaces
 au FileType elm setlocal ts=4 sts=4 sw=4 expandtab
 
@@ -105,3 +109,16 @@ let g:ale_fixers = {
 \  ]
 \}
 let g:ale_lint_on_insert_leave = 1
+
+
+" Automatically set and unset paste when pasting
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
