@@ -1,8 +1,12 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
+" set the runtime path to include Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
+" set the runtime path to include fzf
+set rtp+=/usr/local/opt/fzf
+
+" initialise Vundle
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 " "call vundle#begin('~/some/path/here')
@@ -19,6 +23,9 @@ Plugin 'elmcast/elm-vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'dense-analysis/ale'
 Plugin 'mhinz/vim-mix-format'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'fatih/vim-go'
+Plugin 'junegunn/fzf.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -93,6 +100,10 @@ set splitbelow          " Split new horizontal windows under current window
 " Run go import on save
 let g:go_fmt_command = "goimports"
 
+" Configure gopls
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
 " Run elm format on save
 let g:elm_format_autosave = 1
 
@@ -106,7 +117,10 @@ au FileType elm setlocal ts=4 sts=4 sw=4 expandtab
 let g:ale_fixers = {
 \  'ruby': [
 \    'rubocop'
-\  ]
+\  ],
+\  'go': [
+\    'gopls'
+\  ],
 \}
 let g:ale_lint_on_insert_leave = 1
 
