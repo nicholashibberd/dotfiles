@@ -55,7 +55,7 @@ set buftype=
 
 inoremap kj <ESC>
 
-" Remap :W to :w
+" Remap accidental capitals
 command W w
 
 set tabstop=2
@@ -136,3 +136,6 @@ function! XTermPasteBegin()
   set paste
   return ""
 endfunction
+
+" Remap Ctrl-P to FZF
+nnoremap <silent> <C-p> :FZF<CR>
