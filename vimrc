@@ -3,8 +3,8 @@ filetype off                  " required
 
 " set the runtime path to include Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
-" set the runtime path to include fzf
-set rtp+=/usr/local/opt/fzf
+" set the runtime path to include fzf (use /use/local/opt/fzf on MacOS)
+set rtp+=~/.fzf
 
 " initialise Vundle
 call vundle#begin()
@@ -137,5 +137,7 @@ function! XTermPasteBegin()
   return ""
 endfunction
 
-" Remap Ctrl-P to FZF
+" Map Ctrl-p to FZF
 nnoremap <silent> <C-p> :FZF<CR>
+" Map Ctrl-a to Ag
+nnoremap <silent> <C-a> :Ag<CR>
