@@ -21,4 +21,6 @@
 	ds = diff --staged
   p = pull
 	st = status
-  su = "!f() { git branch --set-upstream $1 origin/$1; }; f"
+  su = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+[diff "sopsdiffer"]
+	textconv = sops -d
