@@ -3,42 +3,42 @@ filetype off                  " required
 
 " set the runtime path to include Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
-" set the runtime path to include fzf (use /use/local/opt/fzf on MacOS)
+" set the runtime path to include fzf
 set rtp+=~/.fzf
 
-" initialise Vundle
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
+"" filetype plugin indent on    " required
+"" " To ignore plugin indent changes, instead use:
+"" "filetype plugin on
+""
+"" " Put your non-Plugin stuff after this line
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-commentary'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'mtscout6/vim-cjsx'
-Plugin 'elmcast/elm-vim'
-Plugin 'elixir-editors/vim-elixir'
-Plugin 'dense-analysis/ale'
-Plugin 'mhinz/vim-mix-format'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'fatih/vim-go'
-Plugin 'junegunn/fzf.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+" Make sure you use single quotes
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-" filetype plugin indent on    " required
-" " To ignore plugin indent changes, instead use:
-" "filetype plugin on
-"
-" " Put your non-Plugin stuff after this line
+Plug 'VundleVim/Vundle.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mtscout6/vim-cjsx'
+Plug 'elmcast/elm-vim'
+Plug 'elixir-editors/vim-elixir'
+Plug 'dense-analysis/ale'
+Plug 'mhinz/vim-mix-format'
+Plug 'leafgarland/typescript-vim'
+Plug 'fatih/vim-go'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'neovim/nvim-lspconfig'
+Plug 'yong1le/darkplus.nvim'
+
+" Initialize plugin system
+call plug#end()
 
 " set the path to the directory that vim was opened from, to allow use of :find
 set path=$PWD/**
@@ -72,20 +72,12 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
-set t_Co=256
-set background=dark
-colorscheme solarized
-let g:solarized_underline=0
-let g:solarized_italic=0
-let g:solarized_bold=0
-let g:solarized_contrast="high"
-let g:solarized_visibility="high"
-let g:solarized_termtrans=1
+colorscheme darkplus
 
 " Disable swap files
 set noswapfile
 
-set colorcolumn=80
+set colorcolumn=100
 
 " Toggle paste/nopaste
 nnoremap <F2> :set invpaste paste?<CR>
@@ -120,7 +112,7 @@ let g:ale_fixers = {
 \  ],
 \  'go': [
 \    'gopls'
-\  ],
+\  ]
 \}
 let g:ale_lint_on_insert_leave = 1
 
@@ -141,3 +133,21 @@ endfunction
 nnoremap <silent> <C-p> :FZF<CR>
 " Map Ctrl-a to Ag
 nnoremap <silent> <C-a> :Ag<CR>
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gVzv:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gVzv:call setreg('"', old_reg, old_regtype)<CR>
